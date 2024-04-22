@@ -1,7 +1,7 @@
 % !TEX encoding = UTF-8 Unicode
 \documentclass[
 10pt,
-aspectratio=169,
+aspectratio=1610,
 ]{beamer}
 \setbeamercovered{transparent=10}
 \usetheme[
@@ -38,12 +38,7 @@ aspectratio=169,
 \setbeamertemplate{section in toc}{\hspace*{1em}\inserttocsectionnumber.~\inserttocsection\par}
 \setbeamertemplate{subsection in toc}{\hspace*{2em}\inserttocsectionnumber.\inserttocsubsectionnumber.~\inserttocsubsection\par}
 \setbeamerfont{subsection in toc}{size=\small}
-\AtBeginSection[]{%
-	\begin{frame}%
-		\frametitle{Outline}%
-		\textbf{\tableofcontents[currentsection]} %
-	\end{frame}%
-}
+
 
 \AtBeginSubsection[]{%
 	\begin{frame}%
@@ -54,10 +49,9 @@ aspectratio=169,
 
 \title{Beamer for BIT}
 \subtitle{A Simple while elegant template}
-\author[C.Li]{Chengkun Li}
-\mail{lichengkun0805@gmail.com}
-\institute[Beijing Institute of Technology]{School of Automation\\
-Beijing Institute of Technology}
+\author[\quad Chao Zhang 3120230698]{Chao Zhang}
+\mail{3120230698@bit.edu.cn}
+\institute[Beijing Institute of Technology]{School of Information and Electronics}
 \date{\today}
 \titlegraphic[width=3cm]{logo_01}{}
 
@@ -73,6 +67,8 @@ Beijing Institute of Technology}
 \begin{document}
 
 \maketitle
+
+
 
 %%% define code
 \defverbatim[colored]\lstI{
@@ -92,6 +88,9 @@ Beijing Institute of Technology}
 % ----------- FRAME ------------
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\begin{frame}{Outline}
+    \textbf{\tableofcontents} %
+\end{frame}
 \section{Basics}
 \subsection{Blocks}
 \begin{frame}[c]{Blocks}
@@ -158,10 +157,29 @@ The blocks are shown below
 		\caption{Credits to Ti\textit{k}Z}
 	\end{figure}
 \end{frame}	
-
+\subsection{Code Demo}
 \begin{frame}{A Listings Demo}{C++}
 	\lstI
 \end{frame}
+
+\section{Others}
+\subsection{References}
+\begin{frame}[c]
+\frametitle{References}
+
+\begin{thebibliography}{99} % Beamer does not support BibTeX so references must be inserted manually as below
+\bibitem{team2015common}
+Team, C.: Common vulnerability scoring system v3. 0: Specification document.
+  First. org  (2015)
+  
+\bibitem{eiram2013cvssv2}
+Eiram, C., Martin, B.: The cvssv2 shortcomings, faults, and failures
+  formulation. In: Technical report, Forum of Incident Response and Security
+  Teams (FIRST) (2013)
+  
+\end{thebibliography}
+\end{frame}
+
 % Thank you page
 \beamertemplateshadingbackground{structure.fg!90}{structure.fg}
 \begin{frame}[plain]
@@ -172,6 +190,8 @@ The blocks are shown below
 	}
 	\vfill
 \end{frame}
+
+
 
 \end{document}
 

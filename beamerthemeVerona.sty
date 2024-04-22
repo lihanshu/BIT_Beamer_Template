@@ -247,13 +247,14 @@ Command \noexpand\sidegraphics\MessageBreak
 {%
 \begin{tikzpicture}[overlay]
 \draw[draw=structure.fg!35] (0mm,3mm) -- (16.3cm,3mm);
-\draw[fill=\structureA,draw=\structureA,yshift=-.5mm] (0mm,3mm) rectangle ++ (1mm,1mm);
+\draw[fill=\structureA,draw=\structureA,yshift=-.5mm] (0mm,3mm) rectangle ++ (1mm +0 cm ,1mm);
 \draw[fill=\structureA,draw=\structureA,yshift=-.5mm] (15.89cm,3mm) rectangle ++ (1mm,1mm);
+
 \end{tikzpicture}
   \leavevmode%
   \hfill\hbox{%
   \begin{beamercolorbox}[wd=.3333333\paperwidth,ht=2.25ex,dp=1ex,left]{author in head/foot}%
-    \usebeamerfont{author in head/foot}\hspace*{1ex}\insertshortauthor\expandafter\beamer@ifempty\expandafter{\beamer@shortinstitute}{}{~~(\insertshortinstitute)}
+    \usebeamerfont{author in head/foot}\hspace*{1ex}\insertshortauthor%\expandafter\beamer@ifempty\expandafter{\beamer@shortinstitute}{}{~~(\insertshortinstitute)}
   \end{beamercolorbox}%
   \begin{beamercolorbox}[wd=.3333333\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
     \usebeamerfont{title in head/foot}\insertshorttitle
@@ -262,7 +263,8 @@ Command \noexpand\sidegraphics\MessageBreak
     \usebeamerfont{date in head/foot}
     \insertshortdate{}\hspace*{2em}
  \lectureinfoot\quad\insertframenumber~\tikz[overlay]\draw[draw=\structureA] (0,-.5mm) -- (0,1.6mm);~\inserttotalframenumber\hspace*{2mm} 
-  \end{beamercolorbox}}%
+  \end{beamercolorbox}
+  }%
   \vskip0pt%
 }
 \fi
@@ -273,23 +275,30 @@ Command \noexpand\sidegraphics\MessageBreak
 {
   \begingroup
   \begin{tikzpicture}[overlay,remember picture]
-  \draw[fill=structure.fg,draw=none] (current page.north west) rectangle (\paperwidth,-.3cm);
-		\node[xshift=-5cm,yshift=-4.1cm] 
-		 	at (current page.north east) (titlepage) {};
+
+\draw[fill=structure.fg,draw=none] (current page.north  west)  rectangle (\paperwidth,  0cm);
+%\draw[fill=structure.fg!90,draw=none] (2,  0) rectangle (10cm, 2cm);
+%\draw[fill=black,draw=none](current page.north  west) rectangle (\paperwidth, 1cm);
+
+\node[xshift=-5cm,yshift=-4.1cm] 	 	at (current page.north east) (titlepage) {};
 	  \inserttitlegraphic;
-%	  \node[anchor=north east] at (\paperwidth-10pt,.5\paperheight-25pt) {\includegraphics[width=3cm]{thu3.png}};
-		\draw[line width=4mm,xshift=-3mm,draw=structure.fg!80,yshift=-1mm] 
-		 	(0,0) -- (\paperwidth,0) {};
-\node[anchor=south west,align=left] at (0,.25) {% 
-\parbox{12cm}{%     
+	%  \node[anchor=north east] at (\paperwidth-10pt,.5\paperheight-25pt)%{\includegraphics[width=3cm]{thu3.png}};
+		\draw[line width=4mm,xshift=-3mm,draw=structure.fg!80,yshift=-1mm] 	 	(-1,0) -- (\paperwidth,0) {};
+	%	\draw[line width=3cm,xshift=-3mm,draw=white,yshift=-1mm] 	 	(-1,2) -- (\paperwidth,2) {};
+% \draw[fill=white] (current page.north  west) rectangle (\paperwidth, 1.5cm);
+ 
+\node[anchor=south west,align=left] at (0, .25) {% 
+\parbox{14cm}{%     
+\centering
 \usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle\par%
       \ifx\insertsubtitle\@empty%
       \else\vskip.5ex%
         {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}
         \insertsubtitle\par}%
       \fi}};
-\node[anchor=north west,align=left] at (0,-.9) {%
-\parbox{7cm}{
+\node[anchor=north west,align=left] at (3,-.9) {%
+\parbox{8cm}{
+\centering
       {\usebeamerfont{author}\usebeamercolor[fg]{author}\insertauthor}\vskip-.5ex
       {\usebeamerfont{author}\usebeamercolor[fg]{author}\scriptsize\ttfamily\@mail}
     \vskip3mm
@@ -300,6 +309,27 @@ Command \noexpand\sidegraphics\MessageBreak
   \end{tikzpicture}
   \endgroup
 }
+
+% ******************
+% frame bar progress
+% ******************
+\setbeamercolor{progress bar progress}{use=progress bar,bg=progress bar.fg}
+\defbeamertemplate{footline}{progress bar}{
+ \dimen0=\paperwidth
+ \multiply\dimen0 by \insertframenumber
+ \divide\dimen0 by \inserttotalframenumber
+ \edef\progressbarwidth{\the\dimen0}
+ \leavevmode%
+ \begin{beamercolorbox}[wd=\paperwidth,ht=2.25ex,dp=10ex]{progress bar}
+ %\begin{beamercolorbox}[wd=\progressbarwidth,ht=1.75ex,dp=1ex]{progress bar progress}
+
+%\end{beamercolorbox}%
+\end{beamercolorbox}%
+}
+
+
+
+
 % ******************
 % frametitle
 % ******************
@@ -328,7 +358,7 @@ Command \noexpand\sidegraphics\MessageBreak
 \vspace{2ex}
 \else
 \begin{tikzpicture}[overlay]
-\draw[line width=1mm,draw=structure.fg,yshift=.5ex] (-0.5,0) -- (\frametitlesidebar,0);
+\draw[line width=1mm,draw=structure.fg,yshift=.5ex] (-1,0) -- (\frametitlesidebar,0);
 \node[anchor=north east] at (\frametitlesidebar-12pt,35pt) {\includegraphics[height=0.78cm]{logo_full.pdf}};
 \end{tikzpicture}
 \vspace{-.5ex}
@@ -349,6 +379,9 @@ Command \noexpand\sidegraphics\MessageBreak
 \begin{frame}[plain]
 \titlepage
 \end{frame}}
+
+
+
 
 \newcommand{\mail}[1]{\def\@mail{#1}}
 \mail{}
